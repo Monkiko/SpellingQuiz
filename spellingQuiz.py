@@ -1,26 +1,27 @@
 """
-The purpose of this program is to create a spelling list and then display it either immediately or during subsequent runs of the program.
+The purpose of this program is to pull an indicated number of random words from a specified spelling list and write them to a new file while removing them from the original list.
+
 
 Created by: Ian Rivera-Leandry
 Last Updated: January 31, 2024
-Version 2.0.1
+Version 2.0.0
 """
+
+
 
 import os
 from time import sleep
+from random import shuffle
 
 def start():
-    choice = str(input("Do you want to create a new spellinglist? Y/N "))
+    grade_level = str(input("Please indicate the grade level spelling list you want (i.e. K, 1, 2, 3, etc.):  "))
 
-    if choice.lower() == "y" or choice.lower() == "yes":
-        askListLength()
-    
-    elif choice.lower() == "n" or choice.lower() == "no":
-        readSpellingList()
+    if len(grade_level) == 1:
+        readSpellingList(grade_level)
 
     else:
         clean()
-        print("Incorrect Input. Please enter either 'Y' or 'N'")
+        print("Incorrect Input. Please enter either K, 1, 2, 3, etc.")
         sleep(3)
         start()
 
@@ -32,59 +33,22 @@ def clean():
         _ = os.system("clear")
 
 
-def askListLength():
-    listLength = int(input("Please indicate the number of words in your spelling list: "))
-    createSpellingList(listLength)
-
-
-def createSpellingList(listLength):
+def readSpellingList(grade):
     
-    if os.path.exists("spelling_list.txt"):
-        os.remove("spelling_list.txt")
+    if grade.lower() == "k":
+        with open("Spelling_Lists/kindergartenList.txt", "r") as spelling_file:
+            spellingList = []
+            spellingList = spelling_file.readlines()
 
-    i = 0
-    makeSpellingList = []
-    while i < listLength:
-        makeSpellingList.append(str(input("Provide a word for the spelling list: ")))
-        i+=1
-    
-    with open("spelling_list.txt", "w") as file:
+        spelling_file.close()
 
-        for i in makeSpellingList:
-            file.write(f"{i}\n")
-    file.close()
-
-    askReadList()
-
-def askReadList():
-    seeList = str(input("Do you want to view the created list? Y/N "))
-
-    if seeList.lower() == "y" or seeList.lower() == "yes":
-        readSpellingList()
-    
-    elif seeList.lower() == "n" or seeList.lower() == "no":
-        print("Ending program now...")
-        sleep(3)
-        exit()
-
-    else:
-        clean()
-        print("Incorrect Input. Please enter either 'Y' or 'N'")
-        sleep(3)
-        askReadList()
-
-def readSpellingList():
-    
-    with open("spelling_list.txt", "r") as spelling_file:
-        spellingList = []
-        spellingList = spelling_file.readlines()
-
-    spelling_file.close()
-
+    shuffle(spellingList)
     clean()
 
-    for i in spellingList:
-        print(i, end="")
+    i = 0
+    while i < 10:
+        print(spellingList)
+        i += 1
 
 
 start()
