@@ -3,7 +3,7 @@ The purpose of this program is to pull an indicated number of random words from 
 
 
 Created by: Ian Rivera-Leandry
-Last Updated: January 31, 2024
+Last Updated: September 15, 2024
 Version 2.0.0
 """
 
@@ -12,7 +12,10 @@ Version 2.0.0
 import os
 from time import sleep
 from random import shuffle
+import re
 
+
+# Get input from the user for the grade level of the desired spelling list and pass result to readSpellingList function
 def start():
     grade_level = str(input("Please indicate the grade level spelling list you want (i.e. K, 1, 2, 3, etc.):  "))
 
@@ -26,6 +29,7 @@ def start():
         start()
 
 
+# Clear the screen dependent on host OS system
 def clean():
     if os.name == "nt":
         _ = os.system("cls")
@@ -33,6 +37,7 @@ def clean():
         _ = os.system("clear")
 
 
+# Read the spelling list file for the grade level indicated previous and add the contents to a list for output printing
 def readSpellingList(grade):
     
     if grade.lower() == "k":
@@ -44,11 +49,27 @@ def readSpellingList(grade):
 
     shuffle(spellingList)
     clean()
+    printSpellingList(spellingList, grade)
 
-    i = 0
-    while i < 10:
-        print(spellingList)
-        i += 1
+
+def printSpellingList(list, grade):
+    
+    for i in range(10):
+        print(str(i + 1) + ') ' + list[i], end=' ')
+
+    listCleanUp(list, grade)
+
+
+def listCleanUp(fullList, grade):
+
+    cleanlist = fullList[10:]
+    
+    if grade.lower() == "k":
+        with open("Spelling_Lists/kindergartenList.txt", 'w') as f:
+            for i in cleanlist:
+                f.writelines([i])
+    
+        f.close()
 
 
 start()
