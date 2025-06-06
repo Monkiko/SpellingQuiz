@@ -47,6 +47,13 @@ def readSpellingList(grade):
 
         spelling_file.close()
 
+    elif grade == "1":
+        with open("Spelling_lists/firstGradeList.txt", "r" as spelling_file:
+            spellingList = []
+            spellingList = spelling.file.readlines()
+
+        spelling_file.close()
+
     shuffle(spellingList)
     clean()
     printSpellingList(spellingList, grade)
@@ -71,5 +78,11 @@ def listCleanUp(fullList, grade):
     
         f.close()
 
+    elif grade() == "1":
+        with open("Spelling_Lists/firstGradeList.txt", 'w') as f:
+            for i in cleanlist:
+                f.writelines([i])
+
+        f.close()
 
 start()
