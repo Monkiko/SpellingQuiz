@@ -3,8 +3,8 @@ The purpose of this program is to pull an indicated number of random words from 
 
 
 Created by: Ian Rivera-Leandry
-Last Updated: September 15, 2024
-Version 2.0.0
+Last Updated: June 10, 2025
+Version 2.1.1
 """
 
 
@@ -59,6 +59,7 @@ def readSpellingList(grade):
     printSpellingList(spellingList, grade)
 
 
+# Outputs the spelling list in a numbered format for easy copy/pasta to a document file
 def printSpellingList(list, grade):
     
     for i in range(10):
@@ -67,6 +68,7 @@ def printSpellingList(list, grade):
     listCleanUp(list, grade)
 
 
+# Removes the words in the spelling list from the source Spelling_Lists file so words are not reused in future iterations
 def listCleanUp(fullList, grade):
 
     cleanlist = fullList[10:]
