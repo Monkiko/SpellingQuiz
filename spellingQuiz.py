@@ -3,8 +3,8 @@ The purpose of this program is to pull an indicated number of random words from 
 
 
 Created by: Ian Rivera-Leandry
-Last Updated: June 10, 2025
-Version 2.1.1
+Last Updated: June 11, 2025
+Version 2.2.1
 """
 
 
@@ -40,19 +40,17 @@ def clean():
 # Read the spelling list file for the grade level indicated previous and add the contents to a list for output printing
 def readSpellingList(grade):
     
-    if grade.lower() == "k":
-        with open("Spelling_Lists/kindergartenList.txt", "r") as spelling_file:
-            spellingList = []
-            spellingList = spelling_file.readlines()
+    match grade.lower():
+        case "k":
+            grade_list = "kindergartenList.txt"
+        case "1":
+            grade_list = "firstGradeList.txt"
+    
+    with open("Spelling_lists/" + grade_list, "r") as spelling_file:
+        spellingList = []
+        spellingList = spelling_file.readlines()
 
-        spelling_file.close()
-
-    elif grade == "1":
-        with open("Spelling_lists/firstGradeList.txt", "r") as spelling_file:
-            spellingList = []
-            spellingList = spelling_file.readlines()
-
-        spelling_file.close()
+    spelling_file.close()
 
     shuffle(spellingList)
     clean()
@@ -73,18 +71,16 @@ def listCleanUp(fullList, grade):
 
     cleanlist = fullList[10:]
     
-    if grade.lower() == "k":
-        with open("Spelling_Lists/kindergartenList.txt", 'w') as f:
-            for i in cleanlist:
-                f.writelines([i])
-    
-        f.close()
+    match grade.lower():
+        case "k":
+            grade_list = "kindergartenList.txt"
+        case "1":
+            grade_list = "firstGradeList.txt"
+            
+    with open("Spelling_lists/" + grade_list, "w") as f:
+        for i in cleanlist:
+            f.writelines([i])
 
-    elif grade() == "1":
-        with open("Spelling_Lists/firstGradeList.txt", 'w') as f:
-            for i in cleanlist:
-                f.writelines([i])
-
-        f.close()
+    f.close()
 
 start()
