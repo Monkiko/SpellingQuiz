@@ -12,7 +12,8 @@ Version 2.2.1
 import os
 from time import sleep
 from random import shuffle
-import re
+from docx import Document
+#import re
 
 
 # Get input from the user for the grade level of the desired spelling list and pass result to readSpellingList function
@@ -58,10 +59,28 @@ def readSpellingList(grade):
 
 
 # Outputs the spelling list in a numbered format for easy copy/pasta to a document file
-def printSpellingList(list, grade):
+# def printSpellingList(list, grade):
     
+#     for i in range(10):
+#         print(str(i + 1) + ') ' + list[i], end=' ')
+
+#     listCleanUp(list, grade)
+
+
+# Creates a new Word document and writes the spelling list to it in a numbered format
+def printSpellingList(list, grade):
+    doc = Document()
+
+    quiz_number = str(input("Please enter the quiz number for this spelling list: "))
+    grade_level = str(input("Please enter the grade level for this spelling list: "))
+
+    doc.add_heading('Spelling List # ' + quiz_number + ' - ' + grade_level.capitalize(), level=1)
+
     for i in range(10):
-        print(str(i + 1) + ') ' + list[i], end=' ')
+        doc.add_paragraph(str(i + 1) + ') ' + list[i].strip())
+
+    doc.save('Spelling List # ' + quiz_number + ' - ' + grade_level.capitalize() + '.docx')
+    print("Spelling list saved to Spelling List # " + quiz_number + " - " + grade_level.capitalize() + ".docx")
 
     listCleanUp(list, grade)
 
