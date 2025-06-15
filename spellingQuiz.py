@@ -4,7 +4,7 @@ The purpose of this program is to pull an indicated number of random words from 
 
 Created by: Ian Rivera-Leandry
 Last Updated: June 15, 2025
-Version 2.2.3
+Version 2.2.4
 """
 
 
@@ -56,7 +56,6 @@ def readSpellingList(grade_level):
     spelling_file.close()
 
     shuffle(spellingList)
-    clean()
     printSpellingList(spellingList, grade)
 
 
@@ -65,20 +64,20 @@ def printSpellingList(spellingList, grade):
     doc = Document()
 
     quiz_number = str(input("Please enter the quiz number for this spelling list: "))
-    grade = str(input("Please enter the grade level for this spelling list: "))
-    date_range = str(input("Please enter the date range for this spelling list (i.e. June 2 - June 6): "))
+    start_date = str(input("Please enter the start date for this spelling list (i.e. June 2): "))
+    end_date = str(input("Please enter the end date for this spelling list (i.e. June 6): "))
 
-    title = doc.add_heading("Spelling List # " + quiz_number + " - " + grade, level=0)
+    title = doc.add_heading("Spelling List # " + quiz_number, level=0)
     title.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
     title.style.font.name = "Arial"
     title.style.font.color.rgb = RGBColor(0, 0, 0)  # Black color
     title.style.font.size = Pt(26)
 
-    date = doc.add_heading("Date Range: " + date_range, level=2)
+    date = doc.add_heading(start_date + " - " + end_date, level=2)
     date.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
     date.style.font.name = "Arial"
     date.style.font.color.rgb = RGBColor(102, 102, 102)  # Dark gray color
-    date.style.font.size = Pt(15)
+    date.style.font.size = Pt(12)
 
     for i in range(10):
         list = doc.add_paragraph(str(i + 1) + ") " + spellingList[i].strip())
@@ -87,7 +86,7 @@ def printSpellingList(spellingList, grade):
         list.style.font.size = Pt(20)
 
     doc.save("Quizzes/" + grade + "/Spelling List #" + quiz_number + " - " + grade + ".docx")
-    print("Spelling list saved to Quizzes/" + grade + "/Spelling List # " + quiz_number + " - " + grade + ".docx")
+    print("Spelling list saved to Quizzes/" + grade + "/Spelling List #" + quiz_number + " - " + grade + ".docx")
 
     listCleanUp(spellingList, grade)
 
