@@ -62,7 +62,7 @@ def printSpellingList(spellingList, grade):
     doc = Document()
 
     quiz_number = str(input("Please enter the quiz number for this spelling list: "))
-    grade_level = str(input("Please enter the grade level for this spelling list: "))
+    grade = str(input("Please enter the grade level for this spelling list: "))
 
     doc.add_heading("Spelling List # " + quiz_number + " - " + grade, level=1)
 
