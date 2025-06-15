@@ -48,6 +48,20 @@ def readSpellingList(grade_level):
             grade = "Kindergarten"
         case "1":
             grade = "First_Grade"
+        case "2":
+            grade = "Second_Grade"
+        case "3":
+            grade = "Third_Grade"
+        case "4":
+            grade = "Fourth_Grade"
+        case "5":
+            grade = "Fifth_Grade"
+        case "6":
+            grade = "Sixth_Grade"
+        case "7":
+            grade = "Seventh_Grade"
+        case "8":
+            grade = "Eighth_Grade"
     
     with open("Spelling_Lists/" + grade + "_List.txt", "r") as spelling_file:
         spellingList = []
