@@ -39,15 +39,15 @@ def clean():
 
 
 # Read the spelling list file for the grade level indicated previous and add the contents to a list for output printing
-def readSpellingList(grade):
-    
-    match grade.lower():
+def readSpellingList(grade_level):
+
+    match grade_level.lower():
         case "k":
-            grade_list = "kindergartenList.txt"
+            grade = "Kindergarten"
         case "1":
-            grade_list = "firstGradeList.txt"
+            grade = "First_Grade"
     
-    with open("Spelling_lists/" + grade_list, "r") as spelling_file:
+    with open("Spelling_Lists/" + grade + "_List.txt", "r") as spelling_file:
         spellingList = []
         spellingList = spelling_file.readlines()
 
@@ -58,45 +58,30 @@ def readSpellingList(grade):
     printSpellingList(spellingList, grade)
 
 
-# Outputs the spelling list in a numbered format for easy copy/pasta to a document file
-# def printSpellingList(list, grade):
-    
-#     for i in range(10):
-#         print(str(i + 1) + ') ' + list[i], end=' ')
-
-#     listCleanUp(list, grade)
-
-
 # Creates a new Word document and writes the spelling list to it in a numbered format
-def printSpellingList(list, grade):
+def printSpellingList(spellingList, grade):
     doc = Document()
 
     quiz_number = str(input("Please enter the quiz number for this spelling list: "))
     grade_level = str(input("Please enter the grade level for this spelling list: "))
 
-    doc.add_heading('Spelling List # ' + quiz_number + ' - ' + grade_level.capitalize(), level=1)
+    doc.add_heading("Spelling List # " + quiz_number + " - " + grade, level=1)
 
     for i in range(10):
-        doc.add_paragraph(str(i + 1) + ') ' + list[i].strip())
+        doc.add_paragraph(str(i + 1) + ") " + spellingList[i].strip())
 
-    doc.save('Spelling List # ' + quiz_number + ' - ' + grade_level.capitalize() + '.docx')
-    print("Spelling list saved to Spelling List # " + quiz_number + " - " + grade_level.capitalize() + ".docx")
+    doc.save("Quizzes/" + grade + "/Spelling List #" + quiz_number + " - " + grade + ".docx")
+    print("Spelling list saved to Quizzes/" + grade + "/Spelling List # " + quiz_number + " - " + grade + ".docx")
 
-    listCleanUp(list, grade)
+    listCleanUp(spellingList, grade)
 
 
 # Removes the words in the spelling list from the source Spelling_Lists file so words are not reused in future iterations
-def listCleanUp(fullList, grade):
+def listCleanUp(spellingList, grade):
 
-    cleanlist = fullList[10:]
-    
-    match grade.lower():
-        case "k":
-            grade_list = "kindergartenList.txt"
-        case "1":
-            grade_list = "firstGradeList.txt"
-            
-    with open("Spelling_lists/" + grade_list, "w") as f:
+    cleanlist = spellingList[10:]
+          
+    with open("Spelling_Lists/" + grade + "_List.txt", "w") as f:
         for i in cleanlist:
             f.writelines([i])
 
