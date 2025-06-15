@@ -3,8 +3,8 @@ The purpose of this program is to pull an indicated number of random words from 
 
 
 Created by: Ian Rivera-Leandry
-Last Updated: June 11, 2025
-Version 2.2.1
+Last Updated: June 15, 2025
+Version 2.2.2
 """
 
 
@@ -13,7 +13,6 @@ import os
 from time import sleep
 from random import shuffle
 from docx import Document
-#import re
 
 
 # Get input from the user for the grade level of the desired spelling list and pass result to readSpellingList function
