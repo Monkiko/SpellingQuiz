@@ -15,6 +15,7 @@ from random import shuffle
 from docx import Document
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from docx.shared import Pt
+from docx.shared import RGBColor
 
 
 # Get input from the user for the grade level of the desired spelling list and pass result to readSpellingList function
@@ -70,19 +71,19 @@ def printSpellingList(spellingList, grade):
     title = doc.add_heading("Spelling List # " + quiz_number + " - " + grade, level=0)
     title.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
     title.style.font.name = "Arial"
-    title.style.font.color.rgb = (0, 0, 0)  # Black color
+    title.style.font.color.rgb = RGBColor(0, 0, 0)  # Black color
     title.style.font.size = Pt(26)
 
     date = doc.add_heading("Date Range: " + date_range, level=2)
     date.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
     date.style.font.name = "Arial"
-    date.style.font.color.rgb = (102, 102, 102)  # Dark gray color
+    date.style.font.color.rgb = RGBColor(102, 102, 102)  # Dark gray color
     date.style.font.size = Pt(15)
 
     for i in range(10):
         list = doc.add_paragraph(str(i + 1) + ") " + spellingList[i].strip())
         list.style.font.name = "Arial"
-        list.style.font.color.rgb = (0, 0, 0)  # Black color
+        list.style.font.color.rgb = RGBColor(0, 0, 0)  # Black color
         list.style.font.size = Pt(20)
 
     doc.save("Quizzes/" + grade + "/Spelling List #" + quiz_number + " - " + grade + ".docx")
