@@ -4,7 +4,7 @@ The purpose of this program is to pull an indicated number of random words from 
 
 Created by: Ian Rivera-Leandry
 Last Updated: June 15, 2025
-Version 2.2.4
+Version 2.2.5
 """
 
 
