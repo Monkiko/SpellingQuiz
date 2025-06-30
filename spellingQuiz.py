@@ -70,14 +70,25 @@ def readSpellingList(grade_level):
     spelling_file.close()
 
     shuffle(spellingList)
-    printSpellingList(spellingList, grade)
+    printSimplifiedList(spellingList, grade)
+
+
+# Creates a text file with a simplified list to be used for making spelling tests in the future
+def printSimplifiedList(spellingList, grade):
+    quiz_number = str(input("Please enter the quiz number for this spelling list: "))
+    
+    with open("Tests/" + grade + "/Simplified_Lists/Spelling_List_#" + quiz_number + ".txt", "w") as f:
+        for i in range(10):
+            f.write(spellingList[i])
+    f.close()
+
+    printSpellingList(spellingList, grade, quiz_number)
 
 
 # Creates a new Word document and writes the spelling list to it in a numbered format
-def printSpellingList(spellingList, grade):
+def printSpellingList(spellingList, grade, quiz_number):
     doc = Document()
 
-    quiz_number = str(input("Please enter the quiz number for this spelling list: "))
     start_date = str(input("Please enter the start date for this spelling list (i.e. June 2): "))
     end_date = str(input("Please enter the end date for this spelling list (i.e. June 6): "))
 
@@ -100,6 +111,7 @@ def printSpellingList(spellingList, grade):
         list.style.font.size = Pt(20)
 
     doc.save("Quizzes/" + grade + "/Spelling List #" + quiz_number + " - " + grade + ".docx")
+    print("Simplified list saved to Tests/" + grade + "/Simplified_Lists/Spelling_List_#" + quiz_number + ".txt")
     print("Spelling list saved to Quizzes/" + grade + "/Spelling List #" + quiz_number + " - " + grade + ".docx")
 
     listCleanUp(spellingList, grade)
