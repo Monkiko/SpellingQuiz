@@ -1,0 +1,10 @@
+gust
+date
+late
+low
+heat
+mold
+cage
+kind
+told
+peep

@@ -1,0 +1,10 @@
+wide
+wall
+lawn
+bay
+plane
+paw
+train
+cat
+dike
+feet
