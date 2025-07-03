@@ -1,0 +1,10 @@
+age
+ask
+baby
+band
+dog
+dust
+game
+lake
+mask
+rest
