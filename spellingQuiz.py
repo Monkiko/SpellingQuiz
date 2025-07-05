@@ -3,8 +3,8 @@ The purpose of this program is to pull an indicated number of random words from 
 
 
 Created by: Ian Rivera-Leandry
-Last Updated: June 15, 2025
-Version 2.2.5
+Last Updated: July 4, 2025
+Version 2.2.6
 """
 
 
@@ -92,7 +92,7 @@ def printSpellingList(spellingList, grade, quiz_number):
     start_date = str(input("Please enter the start date for this spelling list (i.e. June 2): "))
     end_date = str(input("Please enter the end date for this spelling list (i.e. June 6): "))
 
-    title = doc.add_heading("Spelling List # " + quiz_number, level=0)
+    title = doc.add_heading("Spelling List #" + quiz_number, level=0)
     title.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
     title.style.font.name = "Arial"
     title.style.font.color.rgb = RGBColor(0, 0, 0)  # Black color
