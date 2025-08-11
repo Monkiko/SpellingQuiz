@@ -1,12 +1,2 @@
-try
-ball
-damp
-cow
-mine
-sold
-cube
-now
-raw
-bow
-must
 ray
+cube
