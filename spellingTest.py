@@ -106,7 +106,7 @@ def printSpellingTest(spellingList, grade, test_number):
         list.style.font.color.rgb = RGBColor(0, 0, 0)  # Black color
         list.style.font.size = Pt(12)
 
-    doc.save(folder_path + f'Spelling_Test__#{test_number} - {grade}.docx')
-    print("Spelling test saved to " + folder_path + f'Spelling_Test__#{test_number} - {grade}.docx')
+    doc.save(folder_path + f'Spelling Test #{test_number}.docx')
+    print("Spelling test saved to " + folder_path + f'Spelling Test #{test_number}.docx')
 
 start()
